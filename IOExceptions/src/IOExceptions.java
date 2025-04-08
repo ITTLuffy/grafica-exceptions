@@ -13,7 +13,7 @@ public class IOExceptions {
 
     }
 
-    public static void etaValida(int eta) throws InvalidEtaException, IOException {
+    public static void etaValida(int eta) throws InvalidEtaException, IOException { // si può mettere anche il generico Exception
         // controllo sull'eta
         if (eta < 18) {
             throw new InvalidEtaException("devi avere 18 anni"); // invoco la classe
