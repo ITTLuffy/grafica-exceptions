@@ -11,6 +11,11 @@ public class IOExceptions {
             System.out.println("IOException " + ioe.getMessage());
         }
 
+        Studente s = new Studente("Davide", "Cesari", "4546123");
+        try {
+            studentNotPresent(s);
+        }
+
     }
 
     public static void etaValida(int eta) throws InvalidEtaException, IOException { // si può mettere anche il generico Exception
