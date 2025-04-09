@@ -1,10 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JPanel;
 
 public class Canvas extends JPanel {
-
+    Random r = new Random();
     private int width, height;
     private ArrayList<Cerchio> cerchi;
 
@@ -18,7 +19,7 @@ public class Canvas extends JPanel {
         init();
     }
 
-    private void init() {
+    public void init() {
 
         cerchi.clear();
 
@@ -27,6 +28,15 @@ public class Canvas extends JPanel {
             // genero un nuovo cerchio passando la dimensione del pannello
             cerchi.add(new Cerchio(width, height));
         }
+    }
+
+    public void aggiungi() {
+        cerchi.add(new Cerchio(width, height));
+    }
+
+    public void rimuovi() {
+        int x = r.nextInt(0, cerchi.size());
+        cerchi.remove(x);
     }
 
     @Override
@@ -38,6 +48,7 @@ public class Canvas extends JPanel {
             g.setColor(c.getC());
             g.fillOval(c.getX(), c.getY(), c.getD(), c.getD());
         }
+
     }
 
 }
