@@ -1,10 +1,6 @@
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.FileWriter;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class GestioneFile {
 
@@ -58,6 +54,20 @@ public class GestioneFile {
             }
             
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            FileWriter scrittore = new FileWriter("C:\\esempio\\nuovo.txt");
+            Scanner in = new Scanner(System.in);
+            System.out.println("");
+            System.out.println("Inserisci il testo: ");
+            String testo = in.nextLine();
+            scrittore.write(testo);
+            scrittore.close();
+            System.out.println("Testo inserito con successo");
+            
+        } catch(Exception e) {
             System.out.println(e.getMessage());
         }
     
