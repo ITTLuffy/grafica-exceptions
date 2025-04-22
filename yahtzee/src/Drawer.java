@@ -1,5 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Color;
+import java.awt.GridLayout;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -65,15 +68,9 @@ public class Drawer {
                     c.repaint();
 
                 });
-        JButton blocca6 = new JButton("Blocca 6");
-        blocca5.addActionListener(
-                (e) -> {
-                    c.bloccaDado(5);
-                    c.repaint();
-                });
 
         // pulsantiera che contiene i "blocchi dei singoli dadi"
-        JPanel blocchi = new JPanel();
+        JPanel blocchi = new JPanel(new GridLayout(1, 5, 10, 0)); // sistemo i bottoni rispetto ai dadi
 
         // aggiungo i bottoni alla pulsantiera blocchi
         blocchi.add(blocca1);
@@ -81,11 +78,10 @@ public class Drawer {
         blocchi.add(blocca3);
         blocchi.add(blocca4);
         blocchi.add(blocca5);
-        blocchi.add(blocca6);
 
         // aggiungo la pulsantiera blocchi alla finestra
         f.getContentPane().add(blocchi, BorderLayout.NORTH);
-     
+
 
         // rendiamo visibile
         f.setVisible(true);

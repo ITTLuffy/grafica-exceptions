@@ -30,6 +30,7 @@ public class Canvas extends JPanel {
     public void bloccaDado(int pos) {
         dadi[pos].invertiStato();
     }
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
