@@ -40,31 +40,31 @@ public class Drawer {
         JButton blocca1 = new JButton("Blocca 1");
         blocca1.addActionListener(
                 (e) -> {
-                    c.bloccaDado(0);
+                    c.bloccaDado(0, blocca1);
                     c.repaint();
                 });
         JButton blocca2 = new JButton("Blocca 2");
         blocca2.addActionListener(
                 (e) -> {
-                    c.bloccaDado(1);
+                    c.bloccaDado(1, blocca2);
                     c.repaint();
                 });
         JButton blocca3 = new JButton("Blocca 3");
         blocca3.addActionListener(
                 (e) -> {
-                    c.bloccaDado(2);
+                    c.bloccaDado(2, blocca3);
                     c.repaint();
                 });
         JButton blocca4 = new JButton("Blocca 4");
         blocca4.addActionListener(
                 (e) -> {
-                    c.bloccaDado(3);
+                    c.bloccaDado(3, blocca4);
                     c.repaint();
                 });
         JButton blocca5 = new JButton("Blocca 5");
         blocca5.addActionListener(
                 (e) -> {
-                    c.bloccaDado(4);
+                    c.bloccaDado(4, blocca5);
                     c.repaint();
 
                 });

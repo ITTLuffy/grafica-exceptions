@@ -27,8 +27,13 @@ public class Canvas extends JPanel {
         }
     }
 
-    public void bloccaDado(int pos) {
+    public void bloccaDado(int pos, JButton b) {
         dadi[pos].invertiStato();
+        if (dadi[pos].isBloccato()) {
+            b.setBackground(new Color(255, 0, 0));
+        } else {
+            b.setBackground(Color.white);
+        }
     }
     
     @Override
