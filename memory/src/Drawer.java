@@ -9,9 +9,12 @@ public class Drawer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // canvas
+
+        Canvas gioco = new Canvas();
+        frame.getContentPane().add(gioco);
         frame.setSize(600, 630);
         frame.setVisible(true);
 
-        frame.setLocation(null);
+        frame.setLocationRelativeTo(null);
     }
 }
