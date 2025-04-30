@@ -1,5 +1,8 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Tessera extends JButton{
@@ -11,7 +14,7 @@ public class Tessera extends JButton{
         this.front = front;
         this.back = back;
         this.index = index;
-        coperta = true;
+        coperta = false;
     }
 
     public Color getFront() {
@@ -60,9 +63,14 @@ public class Tessera extends JButton{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (coperta) {
-           setBackground(back);
+        Image iconaBack = back.getScaledInstance(getSize().width, getSize().width, Image.SCALE_SMOOTH);
+        //    setBackground(back);
+        setIcon(new ImageIcon(iconaBack));
         } else {
-            setBackground(front);
+        Image iconaFront = front.getScaledInstance(getSize().width, getSize().width, Image.SCALE_SMOOTH);
+        // setBackground(front);
+        setIcon(new ImageIcon(iconaFront));
+
         }
     }
 
