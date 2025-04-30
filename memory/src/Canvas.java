@@ -23,10 +23,25 @@ public class Canvas extends JPanel { // estende il JPanel
 
         setBackground(Color.black);
 
+        colorPool[0] = Color.yellow;
+        colorPool[1] = Color.red;
+        colorPool[2] = Color.green;
+        colorPool[3] = Color.blue;
+        colorPool[4] = Color.cyan;
+        colorPool[5] = Color.magenta;
+        colorPool[6] = Color.darkGray;
+        colorPool[7] = Color.pink;
+
         // inizializzo il tabellone
         for (int i = 0; i < tabellone.length; i++) {
-            tabellone[i] = new 
+            Tessera t = new Tessera(colorPool[i/2], Color.gray, i);
+
+            tabellone[i] = t;
+            this.add(t);
+
         }
+
+
     }
 
 
