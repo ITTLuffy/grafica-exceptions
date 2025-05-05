@@ -46,9 +46,8 @@ public class Canvas extends JPanel {
                 // riempio la cella
                 g.fillRect(x, y, dim_cella, dim_cella);
 
-                
                 // pezzi neri
-                
+
                 if (row == 1) {
                     try {
                         b_pawn = ImageIO.read(getClass().getResourceAsStream("/src/Chess_pdt45.svg.png"));
@@ -109,18 +108,14 @@ public class Canvas extends JPanel {
                     g.drawImage(b_king, x + margin_right_left / 3, y, 72, 72, this);
                 }
 
-                
-                // pezzi bianchi
-                
-//                if (row == 6) {
-//                    try {
-//                        w_pawn = ImageIO.read(getClass().getResourceAsStream("/src/Chess_plt45.svg.png"));
-//                    } catch (IOException e) {
-//                        System.out.println(e.getMessage());
-//                    }
-//
-//                    g.drawImage(w_pawn, x + margin_right_left / 3, y, 72, 72, this);
-//                }
+                if (row == 6) {
+                    try {
+                        w_pawn = ImageIO.read(getClass().getResourceAsStream("/src/Chess_plt45.svg.png"));
+                    } catch (IOException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    g.drawImage(w_pawn, x + margin_right_left / 3, y, 72, 72, this);
+                }
 
                 if (row == 7 && col == 0 || row == 7 && col == 7) {
                     try {
