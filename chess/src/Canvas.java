@@ -50,7 +50,7 @@ public class Canvas extends JPanel {
 
                 if (row == 1) {
                     try {
-                        b_pawn = ImageIO.read(getClass().getResourceAsStream("chess/src/Chess_pdt45.svg.png"));
+                        b_pawn = ImageIO.read(getClass().getResourceAsStream("chess/images/Chess_pdt45.svg.png"));
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
@@ -60,7 +60,7 @@ public class Canvas extends JPanel {
 
                 if (row == 0 && col == 0 || row == 0 && col == 7) {
                     try {
-                        b_rook = ImageIO.read(getClass().getResourceAsStream("chess/src/Chess_rdt45.svg.png"));
+                        b_rook = ImageIO.read(getClass().getResourceAsStream("chess/images/Chess_rdt45.svg.png"));
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
@@ -70,7 +70,7 @@ public class Canvas extends JPanel {
 
                 if (row == 0 && col == 1 || row == 0 && col == 6) {
                     try {
-                        b_knight = ImageIO.read(getClass().getResourceAsStream("chess/src/Chess_ndt45.svg.png"));
+                        b_knight = ImageIO.read(getClass().getResourceAsStream("chess/images/Chess_ndt45.svg.png"));
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
@@ -80,7 +80,7 @@ public class Canvas extends JPanel {
 
                 if (row == 0 && col == 2 || row == 0 && col == 5) {
                     try {
-                        b_bishop = ImageIO.read(getClass().getResourceAsStream("chess/src/Chess_bdt45.svg.png"));
+                        b_bishop = ImageIO.read(getClass().getResourceAsStream("chess/images/Chess_bdt45.svg.png"));
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
@@ -90,7 +90,7 @@ public class Canvas extends JPanel {
 
                 if (row == 0 && col == 3) {
                     try {
-                        b_queen = ImageIO.read(getClass().getResourceAsStream("chess/src/Chess_qdt45.svg.png"));
+                        b_queen = ImageIO.read(getClass().getResourceAsStream("chess/images/Chess_qdt45.svg.png"));
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
@@ -100,7 +100,7 @@ public class Canvas extends JPanel {
 
                 if (row == 0 && col == 4) {
                     try {
-                        b_king = ImageIO.read(getClass().getResourceAsStream("chess/src/Chess_kdt45.svg.png"));
+                        b_king = ImageIO.read(getClass().getResourceAsStream("chess/images/Chess_kdt45.svg.png"));
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
@@ -110,7 +110,7 @@ public class Canvas extends JPanel {
 
                 if (row == 6) {
                     try {
-                        w_pawn = ImageIO.read(getClass().getResourceAsStream("chess/src/Chess_plt45.svg.png"));
+                        w_pawn = ImageIO.read(getClass().getResourceAsStream("chess/images/Chess_plt45.svg.png"));
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
@@ -119,7 +119,7 @@ public class Canvas extends JPanel {
 
                 if (row == 7 && col == 0 || row == 7 && col == 7) {
                     try {
-                        w_rook = ImageIO.read(getClass().getResourceAsStream("chess/src/Chess_rlt45.svg.png"));
+                        w_rook = ImageIO.read(getClass().getResourceAsStream("chess/images/Chess_rlt45.svg.png"));
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
@@ -129,7 +129,7 @@ public class Canvas extends JPanel {
 
                 if (row == 7 && col == 1 || row == 7 && col == 6) {
                     try {
-                        w_knight = ImageIO.read(getClass().getResourceAsStream("chess/src/Chess_nlt45.svg.png"));
+                        w_knight = ImageIO.read(getClass().getResourceAsStream("chess/images/Chess_nlt45.svg.png"));
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
@@ -139,7 +139,7 @@ public class Canvas extends JPanel {
 
                 if (row == 7 && col == 2 || row == 7 && col == 5) {
                     try {
-                        w_bishop = ImageIO.read(getClass().getResourceAsStream("chess/src/Chess_blt45.svg.png"));
+                        w_bishop = ImageIO.read(getClass().getResourceAsStream("chess/images/Chess_blt45.svg.png"));
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
@@ -149,7 +149,7 @@ public class Canvas extends JPanel {
 
                 if (row == 7 && col == 3) {
                     try {
-                        w_queen = ImageIO.read(getClass().getResourceAsStream("chess/src/Chess_qlt45.svg.png"));
+                        w_queen = ImageIO.read(getClass().getResourceAsStream("chess/images/Chess_qlt45.svg.png"));
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
@@ -159,7 +159,7 @@ public class Canvas extends JPanel {
 
                 if (row == 7 && col == 4) {
                     try {
-                        w_king = ImageIO.read(getClass().getResourceAsStream("chess/src/Chess_klt45.svg.png"));
+                        w_king = ImageIO.read(getClass().getResourceAsStream("chess/images/Chess_klt45.svg.png"));
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }

@@ -1,4 +1,3 @@
-import java.awt.Color;
 import javax.swing.JFrame;
 
 public class Drawer {
@@ -11,9 +10,9 @@ public class Drawer {
 
         // canvas
         Canvas c = new Canvas();
+        frame.add(c);
 
         frame.setVisible(true);
-        frame.add(c);
         
         frame.setLocationRelativeTo(null);
 
