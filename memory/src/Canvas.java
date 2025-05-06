@@ -53,8 +53,8 @@ public class Canvas extends JPanel {
         BufferedImage frontTiles = null;
 
         try {
-            backImage = ImageIO.read(new File("images/back.png"));
-            frontTiles = ImageIO.read(new File("images/tiles.jpg"));
+            backImage = ImageIO.read(new File("memory/images/back.png"));
+            frontTiles = ImageIO.read(new File("memory/images/tiles.jpg"));
 
             int w = frontTiles.getWidth() / 4;
             int h = frontTiles.getHeight() / 4;
