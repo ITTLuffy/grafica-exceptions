@@ -192,11 +192,7 @@ public class Canvas extends JPanel {
         do { 
             rFood = r.nextInt(campo.length);
             cFood = r.nextInt(campo[0].length);
-            if (campo[rFood][cFood] == 0) {
-                campo[rFood][cFood] = -1;
-                break;
-            }
-        } while (!morto);
+        } while (campo[rFood][cFood] > 0);
     }
 
     @Override
