@@ -10,6 +10,7 @@ public class Canvas extends JPanel {
     private enum Direzione {
         stop, sx, dx, su, giu
     };
+
     // matrice x la visualizzazione del gioco
     // 0: spazio libero
     // +: serpente
@@ -47,7 +48,6 @@ public class Canvas extends JPanel {
         setUpTimer();
         setUpGioco();
         setUpCibo();
-
         setUpControlli();
     }
 
@@ -107,7 +107,8 @@ public class Canvas extends JPanel {
         } else if (campo[rTesta][cTesta] == 0) {
             campo[rTesta][cTesta] = testa;
         } else {
-
+            // se il serpente mangia il cibo
+            mangiaFrutto();
         }
 
     }
@@ -191,12 +192,33 @@ public class Canvas extends JPanel {
     private void setUpCibo() {
         int rFood, cFood;
 
-        do { 
+        do {
             rFood = r.nextInt(campo.length);
             cFood = r.nextInt(campo[0].length);
         } while (campo[rFood][cFood] > 0);
 
         campo[rFood][cFood] = CIBO;
+
+    }
+
+    private void mangiaFrutto() {
+        if (campo[rTesta][cTesta] == CIBO) {
+            campo[rTesta][cTesta] = 0; // mangia il cibo
+            // il serpente si allunga
+            for (int row = 0; row < campo.length; row++) {
+                for (int col = 0; col < campo[0].length; col++) {
+                    if (campo[row][col] > 0) {
+                        campo[row][col]++; // Incrementa ogni parte del serpente
+                    }
+                }
+            }
+
+            // incrementa la testa
+            testa++;
+
+            // genero un nuovo cibo
+            setUpCibo();
+        }
     }
 
     @Override
@@ -207,30 +229,27 @@ public class Canvas extends JPanel {
             for (int col = 0; col < campo[0].length; col++) {
 
                 // if ((row + col) % 2 == 0) {
-                //     g.setColor(new Color(108, 187, 60));
+                // g.setColor(new Color(108, 187, 60));
                 // } else {
-                //     g.setColor(new Color(92, 168, 42));
+                // g.setColor(new Color(92, 168, 42));
                 // }
                 // g.fillRect(col*25, row*25, 25, 25);
                 // if (campo[row][col] == 0) {
-                //     continue;
+                // continue;
                 // }
                 // disengo il serpente
                 if (campo[row][col] > 0) {
-                    g.setColor(Color.orange);
+                    if (campo[row][col] == testa) {
+                        g.setColor(Color.orange);
+                    } else {
+                        g.setColor(Color.yellow); // Corpo del serpente
+                    }
                     g.fillRect(col * dimCorpo + 1, row * dimCorpo + 1, dimCorpo - 2, dimCorpo - 2);
-                } else {
+                } else if (campo[row][col] == CIBO) {
+                    // disegno il cibo
                     g.setColor(Color.red);
                     g.fillOval(col * dimCorpo + 1, row * dimCorpo + 1, dimCorpo - 2, dimCorpo - 2);
                 }
-                // disegno la frutta
-
-                if (campo[row][col] == testa) {
-                    g.setColor(Color.orange);
-                } else {
-                    g.setColor(Color.yellow);
-                }
-
             }
 
         }
