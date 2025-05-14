@@ -19,6 +19,7 @@ public class Canvas extends JPanel {
     // elementi del serpente
     private int rTesta, cTesta;
     private int testa = 3;
+    private final int CIBO = -1;
 
     private Direzione d = Direzione.dx;
     private Direzione prec = Direzione.stop;
@@ -45,6 +46,7 @@ public class Canvas extends JPanel {
         setBackground(new Color(0, 128, 0));
         setUpTimer();
         setUpGioco();
+        setUpCibo();
 
         setUpControlli();
     }
@@ -193,6 +195,8 @@ public class Canvas extends JPanel {
             rFood = r.nextInt(campo.length);
             cFood = r.nextInt(campo[0].length);
         } while (campo[rFood][cFood] > 0);
+
+        campo[rFood][cFood] = CIBO;
     }
 
     @Override
@@ -215,6 +219,9 @@ public class Canvas extends JPanel {
                 if (campo[row][col] > 0) {
                     g.setColor(Color.orange);
                     g.fillRect(col * dimCorpo + 1, row * dimCorpo + 1, dimCorpo - 2, dimCorpo - 2);
+                } else {
+                    g.setColor(Color.red);
+                    g.fillOval(col * dimCorpo + 1, row * dimCorpo + 1, dimCorpo - 2, dimCorpo - 2);
                 }
                 // disegno la frutta
 
