@@ -3,7 +3,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
 import javax.swing.*;
 
 public class Canvas extends JPanel {
@@ -44,6 +49,29 @@ public class Canvas extends JPanel {
     public Canvas() {
         r = new Random();
         campo = new int[20][20];
+        score = 0;
+
+        // carico il record da File
+        try {
+            File f = new File("record.txt");
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+            FileReader fr = new FileReader("record.txt");
+            Scanner in = new Scanner(fr);
+            record = in.nextInt();
+
+            System.out.println("Punteggio caricato");
+
+            in.close();
+            fr.close();
+        } catch (IOException e1) {
+            System.out.println("errore accesso al file");
+            record = 0;
+        } catch (Exception e2) {
+            System.out.println("errore accesso al file");
+            record = 0;
+        }
 
         setBackground(new Color(0, 128, 0));
         setUpTimer();
@@ -59,7 +87,25 @@ public class Canvas extends JPanel {
                     gestioneFrame();
 
                     // logica morte
-                    repaint();
+                    if (morto) {
+                        t.stop();
+                        if (score > record) {
+                            try {
+                                FileWriter fw = new FileWriter("record.txt");
+                                fw.write(String.valueOf(record));
+                                System.out.println("Punteggio salvato");
+                                fw.flush();
+                                fw.close();
+                            } catch (Exception ex) {
+                                System.out.println("Errore generico");
+                            }
+                        }
+
+                        JOptionPane.showMessageDialog(this, "Hai perso! Il tuo punteggio è: " + score,
+                                "Game Over", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        repaint();
+                    }
                 });
 
         t.start();
@@ -110,6 +156,7 @@ public class Canvas extends JPanel {
             // se il serpente mangia il cibo
             testa++;
             campo[rTesta][cTesta] = testa;
+            score++;
 
             // se il serpente mangia il cibo
             setUpCibo();
@@ -243,6 +290,12 @@ public class Canvas extends JPanel {
             }
 
         }
+
+        // stringa punteggio
+        g.setColor(Color.black);
+        g.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+        g.drawString("Score: " + score, 10, 25);
+        g.drawString("Record: " + record, 10, 50);
 
         if (dir == Direzione.stop) {
             g.setColor(new Color(128, 128, 128, 100));
