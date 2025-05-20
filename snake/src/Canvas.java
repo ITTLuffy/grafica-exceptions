@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.util.Random;
@@ -22,7 +23,7 @@ public class Canvas extends JPanel {
     private int testa = 3;
     private final int CIBO = -1;
 
-    private Direzione d = Direzione.dx;
+    private Direzione dir = Direzione.stop;
     private Direzione prec = Direzione.stop;
 
     // impostazioni grafiche
@@ -66,7 +67,7 @@ public class Canvas extends JPanel {
     }
 
     private void gestioneFrame() {
-        if (d == Direzione.stop) {
+        if (dir == Direzione.stop) {
             return;
         }
 
@@ -80,7 +81,7 @@ public class Canvas extends JPanel {
 
         }
 
-        switch (d) {
+        switch (dir) {
             case dx:
                 cTesta++;
                 break;
@@ -97,7 +98,6 @@ public class Canvas extends JPanel {
 
         // se il serpente esce dal campo
         if (cTesta < 0 || cTesta >= campo[0].length || rTesta < 0 || rTesta >= campo.length) {
-
             morto = true;
         }
 
@@ -108,7 +108,11 @@ public class Canvas extends JPanel {
             campo[rTesta][cTesta] = testa;
         } else {
             // se il serpente mangia il cibo
-            mangiaFrutto();
+            testa++;
+            campo[rTesta][cTesta] = testa;
+
+            // se il serpente mangia il cibo
+            setUpCibo();
         }
 
     }
@@ -121,9 +125,9 @@ public class Canvas extends JPanel {
         Action dxAction = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (d != Direzione.sx && prec != Direzione.sx) {
+                if (dir != Direzione.sx && prec != Direzione.sx) {
                     prec = Direzione.stop;
-                    d = Direzione.dx;
+                    dir = Direzione.dx;
                 }
             }
         };
@@ -131,9 +135,9 @@ public class Canvas extends JPanel {
         Action sxAction = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (d != Direzione.dx && prec != Direzione.dx) {
+                if (dir != Direzione.dx && prec != Direzione.dx) {
                     prec = Direzione.stop;
-                    d = Direzione.sx;
+                    dir = Direzione.sx;
                 }
             }
         };
@@ -141,9 +145,9 @@ public class Canvas extends JPanel {
         Action suAction = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (d != Direzione.su && prec != Direzione.su) {
+                if (dir != Direzione.su && prec != Direzione.su) {
                     prec = Direzione.stop;
-                    d = Direzione.su;
+                    dir = Direzione.su;
                 }
             }
         };
@@ -151,9 +155,9 @@ public class Canvas extends JPanel {
         Action giuAction = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (d != Direzione.su && prec != Direzione.su) {
+                if (dir != Direzione.su && prec != Direzione.su) {
                     prec = Direzione.stop;
-                    d = Direzione.giu;
+                    dir = Direzione.giu;
                 }
             }
         };
@@ -161,7 +165,13 @@ public class Canvas extends JPanel {
         Action pausaAction = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if (dir == Direzione.stop) {
+                    dir = prec;
+                    prec = Direzione.stop;
+                } else {
+                    prec = dir;
+                    dir = Direzione.stop;
+                }
             }
         };
 
@@ -201,26 +211,6 @@ public class Canvas extends JPanel {
 
     }
 
-    private void mangiaFrutto() {
-        if (campo[rTesta][cTesta] == CIBO) {
-            campo[rTesta][cTesta] = 0; // mangia il cibo
-            // il serpente si allunga
-            for (int row = 0; row < campo.length; row++) {
-                for (int col = 0; col < campo[0].length; col++) {
-                    if (campo[row][col] > 0) {
-                        campo[row][col]++; // Incrementa ogni parte del serpente
-                    }
-                }
-            }
-
-            // incrementa la testa
-            testa++;
-
-            // genero un nuovo cibo
-            setUpCibo();
-        }
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -253,6 +243,18 @@ public class Canvas extends JPanel {
             }
 
         }
+
+        if (dir == Direzione.stop) {
+            g.setColor(new Color(128, 128, 128, 100));
+            g.fillRect(0, 0, getWidth(), getHeight());
+            g.setFont(new Font("Comics Sans MS", Font.BOLD, 48));
+            g.setColor(Color.black);
+            g.drawString("PAUSA", 183, 263);
+            g.setColor(Color.magenta);
+            g.drawString("PAUSA", 180, 260);
+
+        }
+
     }
 
 }
