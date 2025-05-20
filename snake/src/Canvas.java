@@ -99,7 +99,7 @@ public class Canvas extends JPanel {
                         if (score > record) {
                             try {
                                 FileWriter fw = new FileWriter("record.txt");
-                                fw.write(String.valueOf(record));
+                                fw.write(String.valueOf(score));
                                 System.out.println("Punteggio salvato");
                                 fw.flush();
                                 fw.close();
@@ -152,11 +152,13 @@ public class Canvas extends JPanel {
         // se il serpente esce dal campo
         if (cTesta < 0 || cTesta >= campo[0].length || rTesta < 0 || rTesta >= campo.length) {
             morto = true;
+            return;
         }
 
         // se il serpente tocca se stesso
         if (campo[rTesta][cTesta] > 0) {
             morto = true;
+            return;
         } else if (campo[rTesta][cTesta] == 0) {
             campo[rTesta][cTesta] = testa;
         } else {
