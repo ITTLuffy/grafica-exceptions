@@ -51,26 +51,33 @@ public class Canvas extends JPanel {
         campo = new int[20][20];
         score = 0;
 
-        // carico il record da File
+        // Carico il record da file
         try {
             File f = new File("record.txt");
             if (!f.exists()) {
                 f.createNewFile();
+                record = 0; // Se il file non esiste, inizializzo il record a 0
+            } else {
+                FileReader fr = new FileReader(f);
+                Scanner in = new Scanner(fr);
+
+                if (in.hasNextInt()) {
+                    record = in.nextInt(); // Leggo il record dal file
+                    System.out.println("Punteggio caricato: " + record);
+                } else {
+                    record = 0; // Se il file è vuoto o non valido, inizializzo a 0
+                    System.out.println("File vuoto o non valido, record impostato a 0");
+                }
+
+                in.close();
+                fr.close();
             }
-            FileReader fr = new FileReader("record.txt");
-            Scanner in = new Scanner(fr);
-            record = in.nextInt();
-
-            System.out.println("Punteggio caricato");
-
-            in.close();
-            fr.close();
         } catch (IOException e1) {
-            System.out.println("errore accesso al file");
-            record = 0;
+            System.out.println("Errore di accesso al file: " + e1.getMessage());
+            record = 0; // In caso di errore, inizializzo il record a 0
         } catch (Exception e2) {
-            System.out.println("errore accesso al file");
-            record = 0;
+            System.out.println("Errore generico: " + e2.getMessage());
+            record = 0; // In caso di errore generico, inizializzo il record a 0
         }
 
         setBackground(new Color(0, 128, 0));
