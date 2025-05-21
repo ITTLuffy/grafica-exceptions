@@ -37,6 +37,12 @@ public class Drawer {
                 if ((frame.getContentPane().getComponents().length) > 1) {
                     frame.getContentPane().remove(1);
                 }
+
+                java.awt.Component southComponent = ((BorderLayout) frame.getContentPane().getLayout()).getLayoutComponent(BorderLayout.SOUTH);
+                if (southComponent != null) {
+                    frame.getContentPane().remove(southComponent);
+                }
+
                 Canvas gioco = new Canvas();
                 frame.getContentPane().add(gioco);
 
@@ -63,7 +69,7 @@ public class Drawer {
         frame.add(label);
 
         ImageIcon imageIcon = new ImageIcon("snake/logo.png");
-        
+
         // Aggiungi l'immagine a una JLabel
         JLabel imageLabel = new JLabel(imageIcon);
 
