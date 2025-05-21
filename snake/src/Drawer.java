@@ -1,5 +1,6 @@
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import javax.swing.ImageIcon;
@@ -55,6 +56,9 @@ public class Drawer {
         // gestione schermata iniziale
         String html = "<html><div style='text-align: center;'>MARCONI<br>SNAKE</div></html>";
         JLabel label = new JLabel(html, JLabel.CENTER);
+        label.setBackground(Color.gray);
+        label.setForeground(Color.white);
+        label.setOpaque(true);
         label.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
         frame.add(label);
 
