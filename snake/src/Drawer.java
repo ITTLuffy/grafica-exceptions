@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import javax.swing.JFrame;
@@ -19,17 +20,19 @@ public class Drawer {
         JMenuItem exit = new JMenuItem("Esci");
 
         barra.add(restart);
-        about.add(info); 
+        about.add(info);
         barra.add(about);
         barra.add(exit);
-        
 
         frame.getContentPane().add(barra, BorderLayout.NORTH);
 
         restart.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                System.out.println("Nuova Partita");
+                // recuperiamo il contenitore del JFrame e rimuovere un Canvas
+                if ((frame.getContentPane().getComponents().length) > 1) {
+                    frame.getContentPane().remove(1);
+                }
                 Canvas gioco = new Canvas();
                 frame.getContentPane().add(gioco);
 
@@ -45,7 +48,6 @@ public class Drawer {
                 System.exit(0);
             }
         });
-        
 
         frame.setSize(518, 563);
 
