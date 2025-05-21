@@ -1,7 +1,10 @@
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -48,6 +51,20 @@ public class Drawer {
                 System.exit(0);
             }
         });
+
+        // gestione schermata iniziale
+        String html = "<html><div style='text-align: center;'>MARCONI<br>SNAKE</div></html>";
+        JLabel label = new JLabel(html, JLabel.CENTER);
+        label.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+        frame.add(label);
+
+        ImageIcon imageIcon = new ImageIcon("snake/logo.png");
+        
+        // Aggiungi l'immagine a una JLabel
+        JLabel imageLabel = new JLabel(imageIcon);
+
+        // Aggiungi il label al frame
+        frame.getContentPane().add(imageLabel, BorderLayout.SOUTH);
 
         frame.setSize(518, 563);
 
