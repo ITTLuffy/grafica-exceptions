@@ -16,10 +16,12 @@ public class Drawer {
         JMenuItem restart = new JMenuItem("Nuova Partita");
         JMenu about = new JMenu("?");
         JMenuItem info = new JMenuItem("Snake by Marconi 2025");
+        JMenuItem exit = new JMenuItem("Esci");
 
         barra.add(restart);
         about.add(info); 
         barra.add(about);
+        barra.add(exit);
         
 
         frame.getContentPane().add(barra, BorderLayout.NORTH);
@@ -35,6 +37,15 @@ public class Drawer {
                 frame.repaint();
             }
         });
+
+        exit.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                System.out.println("Esci");
+                System.exit(0);
+            }
+        });
+        
 
         frame.setSize(518, 563);
 
