@@ -152,8 +152,8 @@ public class Canvas extends JPanel {
         // aggiorno logica delle vite
         // aggiorno fisica dei mattoni
         // aggiorno collisioni
-        if (!navetta.navettaColpita() && navetta.isPallinaFerma()) {
-            pallina.rimbalzoHor();
+        if (navetta.navettaColpita() && !navetta.isPallinaFerma()) {
+            pallina.rimbalzoVert();
         }
     }
 
