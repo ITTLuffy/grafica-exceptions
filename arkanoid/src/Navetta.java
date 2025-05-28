@@ -39,7 +39,15 @@ public class Navetta {
             return;
         }
         
-        // TODO
+        // TODO 
+        if (startPallina) {
+            pallina.spostaX(currentSpeed);
+        }
+
+    }
+
+    public void sbloccaPallina() {
+        startPallina = false;
     }
     
     public void stop() {

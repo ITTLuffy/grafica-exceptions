@@ -8,7 +8,7 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
-import javax.swing.QTimer;
+import javax.swing.Timer;
 
 public class Canvas extends JPanel {
     
@@ -119,8 +119,9 @@ public class Canvas extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                
                 // far partire la pallina
+                navetta.sbloccaPallina();
+                pallina.lancia();
             }
         };
         
@@ -142,7 +143,9 @@ public class Canvas extends JPanel {
     private void gestioneFrame() {
         
         // aggiorno la pallina
-        
+        pallina.muovi();
+        pallina.checkRimbalzi();
+
         // aggiorno la navetta
         navetta.muovi();
         
@@ -167,6 +170,8 @@ public class Canvas extends JPanel {
             navetta.getWidth() - navetta.getHeight(), navetta.getHeight());
         
         // disegno la pallina
+        g.setColor(Color.white);
+        g.fillOval(pallina.getX(), pallina.getY(), pallina.getDiametro(), pallina.getDiametro());
         
         // disegno i mattoni
         for (Mattone m : mattoni) {
