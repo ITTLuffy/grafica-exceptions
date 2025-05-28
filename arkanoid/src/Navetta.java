@@ -1,3 +1,6 @@
+
+import java.awt.Rectangle;
+
 public class Navetta {
     
     // attributi sprite
@@ -49,9 +52,21 @@ public class Navetta {
     public void sbloccaPallina() {
         startPallina = false;
     }
+
+    public boolean isPallinaFerma() {
+        return startPallina;
+    }
     
     public void stop() {
         currentSpeed = 0;
+    }
+
+    public boolean navettaColpita() {
+        return getHitBox().intersects(pallina.getNextHitBox());
+    }
+
+    public Rectangle getHitBox() {
+        return new Rectangle(x, y, width, height);
     }
     
     public int getX() {

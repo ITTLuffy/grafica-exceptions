@@ -1,4 +1,7 @@
 
+import java.awt.Rectangle;
+
+
 
 public class Pallina {
     // definizione sprite
@@ -72,6 +75,15 @@ public class Pallina {
     public void lancia() {
         currentSpeed = speed; // inizializzo current speed
     }
+
+    public Rectangle getHitBox() {
+        return new Rectangle(x, y, diametro, diametro);
+    }
+
+    public Rectangle getNextHitBox() {
+        return new Rectangle(x + xVel * currentSpeed, y + yVel * currentSpeed, diametro, diametro);
+    }
+
 
     public int getX() {
         return x;
