@@ -56,6 +56,82 @@ public class Pallina {
 
     }
 
+    public Mattone checkMattone(Mattone[] mattoni) {
+        boolean colpito = false;
+        for (Mattone m : mattoni) {
+            if (m.isDistrutto()) 
+                continue;
+
+            if (m.getHitBox().intersects(getNextHitBox())) {
+                colpito = true;
+            }
+        }
+
+        if (colpito) {
+            // cerco quale mattoncino ha una collisione maggiore
+            Mattone max = getMaxIntersect(mattoni);
+
+            Rectangle sovrapposto = max.getHitBox().intersection(getNextHitBox());
+            boolean isLaterale = isRimbalzoLaterale(sovrapposto);
+
+            if(isLaterale) 
+                rimbalzoHor();
+            else 
+                rimbalzoVert();
+
+            boolean rotto = max.aggiornaPunti();
+
+            return rotto ? null : max;
+
+        }
+
+    }
+
+    private Mattone getMaxIntersect(Mattone[] mattoni) {
+        int index = 0;
+        Mattone max;
+
+        while (mattoni[index].isDistrutto()) {
+            index++;
+        }
+
+        if (index < mattoni.length) {
+            max = mattoni[index];
+        } else {
+            return null;
+        }
+
+        Rectangle rectMax = new Rectangle(0, 0, 0, 0);
+        if (max.getHitBox().intersects(getNextHitBox())) {
+            rectMax = max.getHitBox().intersection(getNextHitBox());
+        }
+
+        int areaMax = rectMax.width * rectMax.height;
+
+        // cerco se ci sono altri mattoni che collidono di più
+        for (Mattone mattone : mattoni) {
+            if (mattone == max || mattone.isDistrutto()) continue;
+            if (!mattone.getHitBox().intersects(getNextHitBox())) continue;
+
+            Rectangle rect = mattone.getHitBox().intersection(getNextHitBox());
+            int area = rect.width * rect.height;
+
+            if (area > areaMax) 
+                areaMax = area;
+                rectMax = rect;
+
+        }
+
+        return max;
+    }
+
+    private boolean isRimbalzoLaterale(Rectangle area) {
+        // vero se laterale
+        // falso se orizontale
+        return (area.height > area.width);
+    }
+
+
     public void spostaX(int vel) {
         x += vel;
     }

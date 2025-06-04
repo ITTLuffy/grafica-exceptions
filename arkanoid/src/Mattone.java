@@ -1,3 +1,5 @@
+import java.awt.Rectangle;
+
 public class Mattone {
     
     private int x, y;
@@ -39,6 +41,13 @@ public class Mattone {
 
     public int getColpiRimasti() {
         return colpiRimasti;
+    }
+
+    public Rectangle getHitBox() {
+        if (!distrutto) {
+            return new Rectangle(x, y, width, height);
+        } else 
+            return null;
     }
     
     
